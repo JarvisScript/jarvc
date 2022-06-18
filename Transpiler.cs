@@ -133,7 +133,9 @@ namespace jarvc
             File.WriteAllText("./~tmp.jarvs", input);
             Process p = Process.Start(Environment.GetEnvironmentVariable("APPDATA") + "\\npm\\js-beautify.cmd", "-rqf ./~tmp.jarvs");
             p.WaitForExit();
-            return File.ReadAllText("./~tmp.jarvs");
+            string ret = File.ReadAllText("./~tmp.jarvs");
+            File.Delete("./~tmp.jarvs");
+            return ret;
         }
     }
 
